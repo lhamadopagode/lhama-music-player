@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import Layout from './Layout';
-import css from '../css/app.css';
+import Sass from '../scss/main.scss';
 
 let render = document.querySelector('.app');
 

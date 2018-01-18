@@ -23,8 +23,12 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        use: ['style-loader','css-loader']
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.(jpg|png|svg)$/,
@@ -36,5 +40,11 @@ module.exports = {
     ]
   },
   plugins: [HtmlWebpackPluginConfig],
-  devtool: 'source-map'
+  devtool: 'source-map',
+  resolve: {
+    alias: {
+      bootstrap$: path.resolve(__dirname, './node_modules/bootstrap/scss/bootstrap.scss'),
+      
+    }
+  }
 }

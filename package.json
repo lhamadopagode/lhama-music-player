@@ -22,6 +22,7 @@
     "bootstrap": "^4.0.0-beta.3",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.6",
+    "firebase": "^4.9.0",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.7.2",
     "path": "^0.12.7",

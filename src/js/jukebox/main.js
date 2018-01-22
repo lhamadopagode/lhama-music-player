@@ -24,19 +24,26 @@ class Jukebox extends React.Component {
     SC.initialize({
       client_id: 'XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi',
     });
-
-    fetch('http://api.soundcloud.com/playlists/413389793?client_id=XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi').then((response) => {
+    
+    fetch('https://cassandra-ced35.firebaseio.com/playlists.json').then((response) => {
+      return Response.json();
+    }).then((json) => {
+      this.setState({
+        tracks: json[0],
+      })
+    });
+    /* fetch('http://api.soundcloud.com/playlists/413389793?client_id=XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi').then((response) => {
       return response.json();
     }).then((json) => {
       this.setState({
-        tracks: json.tracks,
+        tracks: json.tracks
       })
       window.pagode = this.state;
-    });
+    }); */
   }
 
   play(){
-    if(this.state.isPlaying){
+/*     if(this.state.isPlaying){
       this.state.player.pause();
       this.setState({
         isPlaying: false,
@@ -74,7 +81,8 @@ class Jukebox extends React.Component {
           isPlaying: true,
         });
       }
-    }
+    } */
+    
 
   }
   

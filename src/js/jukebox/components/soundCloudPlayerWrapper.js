@@ -1,11 +1,9 @@
-
-
-class SoundCloudWrapper {
+class SoundCloudPlayerWrapper {
   constructor(){
 
   }
 
   player(){
-      
+
   }
 }

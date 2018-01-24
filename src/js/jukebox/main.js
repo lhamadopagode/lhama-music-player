@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import SoundCloudPlayerWrapper from './components/soundCloudPlayerWrapper';
+import SoundCloudPlayerWrapper, { SoundCloudPlayerWrapperEvents } from './components/soundCloudPlayerWrapper';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlay from '@fortawesome/fontawesome-free-solid/faPlay'; 
 import faPause from '@fortawesome/fontawesome-free-solid/faPause';
+import faCircleNotch from '@fortawesome/fontawesome-free-solid/faCircleNotch';
 
 class Jukebox extends React.Component {
   constructor(props) {

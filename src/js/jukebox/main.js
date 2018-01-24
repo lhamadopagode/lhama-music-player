@@ -18,8 +18,10 @@ class Jukebox extends React.Component {
         trackName: 'No Name',
         artistName: 'No Artist',
       },
-      player: {},
     }
+
+    window.addEventListener(SoundCloudPlayerWrapperEvents.PLAYING, _=> this.setState({ isPlaying: true}));
+    window.addEventListener(SoundCloudPlayerWrapperEvents.FINISHED, _=> { this.playNextSong(); this.setState({ isPlaying: false }) });
   }
 
   componentWillMount(){

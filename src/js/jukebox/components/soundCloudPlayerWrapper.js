@@ -9,7 +9,6 @@ export const SoundCloudPlayerWrapperEvents = {
 class SoundCloudPlayerWrapper {
   constructor(musicURI){
     this.id = musicURI;
-    this.player = {};
     this.event = {}
     this.event[SoundCloudPlayerWrapperEvents.PLAYING] = new CustomEvent('playing',{
       musicID: this.id,

@@ -113,14 +113,14 @@ class Jukebox extends React.Component {
       <div className="jukebox__wrapper">
         <div className="jukebox">
           <div className="jukebox__cover">
-            <button className="jukebox__play-pause" onClick={this.play.bind(this)}><FontAwesomeIcon icon={this.state.isPlaying ? faPause : faPlay} className={this.state.isPlaying ? '' : 'jukebox__play-pause-icon'}/></button>
+            { this.renderPlayButton() } 
             <img className="jukebox__cover-img" src={this.state.playingCover} alt="Album Cover"/>
           </div>
           <div className="jukebox__controls">
             <h1 className="jukebox__status">Now Playing</h1>
             <span className="jukebox__track-name">{this.state.nowPlaying.trackName}</span>
             <span className="jukebox__track-artist">{this.state.nowPlaying.artistName}</span>
-            <span className="jukebox__track-album">Colors</span>
+            <button onClick={this.playNextSong.bind(this)}>Próxima</button>
           </div>
         </div>
       </div>

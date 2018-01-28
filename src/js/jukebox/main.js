@@ -4,10 +4,13 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlay from '@fortawesome/fontawesome-free-solid/faPlay'; 
 import faPause from '@fortawesome/fontawesome-free-solid/faPause';
 import faCircleNotch from '@fortawesome/fontawesome-free-solid/faCircleNotch';
+import _ from 'lodash';
 
 class Jukebox extends React.Component {
   constructor(props) {
     super(props)
+    
+    this.clientId = 'XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi';
 
     this.state = {
       tracks: [],

@@ -29,68 +29,83 @@ class Jukebox extends React.Component {
 
   componentWillMount(){
     SC.initialize({
-      client_id: 'XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi',
+      client_id: this.clientId
     });
     
     fetch('https://cassandra-ced35.firebaseio.com/playlists.json').then((response) => {
-      return Response.json();
-    }).then((json) => {
-      this.setState({
-        tracks: json[0],
-      })
-    });
-    /* fetch('http://api.soundcloud.com/playlists/413389793?client_id=XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi').then((response) => {
       return response.json();
     }).then((json) => {
       this.setState({
-        tracks: json.tracks
+        tracks: json[0].tracks,
       })
-      window.pagode = this.state;
-    }); */
+    });
   }
 
-  play(){
-/*     if(this.state.isPlaying){
-      this.state.player.pause();
-      this.setState({
-        isPlaying: false,
+  pause(){
+    this.player.pause();
+    this.setState({
+      isPlaying: false,
+    })
+  }
+
+  playNextSong(){
+    // debugger;
+    this.musicPosition++;
+    this.player.kill(); 
+    this.player = new SoundCloudPlayerWrapper(this.state.tracks[this.musicPosition].track_id);
+    this.setState({
+      nowPlaying: {
+        trackName: this.state.tracks[this.musicPosition].track_title,
+        artistName: this.state.tracks[this.musicPosition].track_artist,
+      }
+    });
+    fetch('http://api.soundcloud.com/tracks/'+ this.state.tracks[this.musicPosition].track_id +'?client_id='+ this.clientId)
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({
+          playingCover: json.artwork_url.replace('large','t500x500')
+        })
       });
+    this.player.play();
+  }
+
+  playSong(){
+    // debugger;
+    if (_.isUndefined(this.player)) {
+      this.musicPosition = 0
+      this.player = new SoundCloudPlayerWrapper(this.state.tracks[this.musicPosition].track_id);
+      this.setState({
+        nowPlaying: {
+          trackName: this.state.tracks[this.musicPosition].track_title,
+          artistName: this.state.tracks[this.musicPosition].track_artist,
+        }
+      });
+      fetch('http://api.soundcloud.com/tracks/' + this.state.tracks[this.musicPosition].track_id + '?client_id=' + this.clientId)
+        .then((response) => response.json())
+        .then((json) => {
+          this.setState({
+            playingCover: json.artwork_url.replace('large', 't500x500')
+          })
+        });
+      this.player.play();
     }
     else{
-      debugger;
-      if(this.state.player){
-        SC.stream('/tracks/' + this.state.tracks[this.state.trackPosition].id).then((player) => {
-          let isPlaying = player;
-          isPlaying.play();
-          return isPlaying;
-        }).then((isPlaying) => {
-          this.setState({ player: isPlaying });
-          window.pagode = this.state;
-        });
-        this.setState({
-          playingCover: this.state.tracks[this.state.trackPosition].artwork_url,
-          isPlaying: true,
-          nowPlaying: {
-            trackName: this.state.tracks[this.state.trackPosition].title,
-            artistName: this.state.tracks[this.state.trackPosition].user.username,
-          }
-        });
-        
-        let Playing = new CustomEvent('Playing', {
-          'track': this.state.tracks[this.state.trackPosition].id,
-        });
-        
-        window.dispatchEvent(Playing);
+      this.player.play();
+    }
+  }
+
+  renderPlayButton(){
+    if(this.state.tracks.length){
+      if(this.state.isPlaying) {
+        return <button className="jukebox__play-pause" onClick={this.pause.bind(this)}><FontAwesomeIcon icon={faPause} className={this.state.isPlaying ? '' : 'jukebox__play-pause-icon'} /></button>
       }
       else {
-        this.state.player.play();
-        this.setState({
-          isPlaying: true,
-        });
+        return <button className="jukebox__play-pause" onClick={this.playSong.bind(this)}><FontAwesomeIcon icon={faPlay} className='jukebox__play-pause-icon' /></button>
       }
-    } */
-    
-
+    }
+    else {
+      return <button disabled className="jukebox__play-pause"><FontAwesomeIcon icon={faCircleNotch} /></button>
+    }
   }
   
   render() {

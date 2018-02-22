@@ -4,12 +4,6 @@ import Hero from './components/Hero';
 import Jukebox from './jukebox/main';
 
 class Layout extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-  }
-
   render(){
     return(
       <div>

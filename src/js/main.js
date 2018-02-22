@@ -3,10 +3,10 @@ import ReactDom from 'react-dom';
 import Layout from './Layout';
 import Sass from '../scss/main.scss';
 
-let render = document.querySelector('.app');
+const appContainer = document.querySelector('.app');
 
 ReactDom.render(
   <Layout />
   ,
-  render
+  appContainer
 );

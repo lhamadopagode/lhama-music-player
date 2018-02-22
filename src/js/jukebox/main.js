@@ -25,31 +25,29 @@ class Jukebox extends React.Component {
     window.addEventListener(SoundCloudPlayerWrapperEvents.FINISHED, _=> { this.playNextSong(); this.setState({ isPlaying: false }) });
   }
 
-  componentWillMount(){
+  componentWillMount() {
     SC.initialize({
       client_id: this.clientId
     });
-    
+
     fetch('https://cassandra-ced35.firebaseio.com/playlists.json').then((response) => {
       return response.json();
     }).then((json) => {
-      this.setState({
-        tracks: json[0].tracks,
-      })
-    });
+      this.tracks = json[0].tracks;
+    }).catch( error => console.log(error));;
   }
 
-  pause(){
+  pause() {
     this.player.pause();
     this.setState({
       isPlaying: false,
-    })
+    });
   }
 
-  playNextSong(){
+  playNextSong() {
     // debugger;
     this.musicPosition++;
-    this.player.kill(); 
+    this.player.kill();
     this.player = new SoundCloudPlayerWrapper(this.state.tracks[this.musicPosition].track_id);
     this.setState({
       nowPlaying: {
@@ -67,7 +65,7 @@ class Jukebox extends React.Component {
     this.player.play();
   }
 
-  playSong(){
+  playSong() {
     // debugger;
     if (_.isUndefined(this.player)) {
       this.musicPosition = 0

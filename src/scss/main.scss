@@ -8,7 +8,10 @@
 @import "variables";
 
 // Components
-@import "./components/navbar";
 @import "./components/buttons";
+
+// Sections
+@import "./components/navbar";
+@import "./components/hero";
 @import "./components/jukebox";
 

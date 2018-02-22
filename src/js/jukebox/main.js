@@ -52,14 +52,14 @@ class Jukebox extends React.Component {
     // debugger;
     this.musicPosition++;
     this.player.kill();
-    this.player = new SoundCloudPlayerWrapper(this.state.tracks[this.musicPosition].track_id);
+    this.player = new SoundCloudPlayerWrapper(this.tracks[this.musicPosition].track_id);
     this.setState({
       nowPlaying: {
-        trackName: this.state.tracks[this.musicPosition].track_title,
-        artistName: this.state.tracks[this.musicPosition].track_artist,
+        trackName: this.tracks[this.musicPosition].track_title,
+        artistName: this.tracks[this.musicPosition].track_artist,
       }
     });
-    fetch('http://api.soundcloud.com/tracks/'+ this.state.tracks[this.musicPosition].track_id +'?client_id='+ this.clientId)
+    fetch('http://api.soundcloud.com/tracks/'+ this.tracks[this.musicPosition].track_id +'?client_id='+ this.clientId)
       .then((response) => response.json())
       .then((json) => {
         this.setState({
@@ -70,17 +70,17 @@ class Jukebox extends React.Component {
   }
 
   playSong() {
-    // debugger;
     if (_.isUndefined(this.player)) {
       this.musicPosition = 0
-      this.player = new SoundCloudPlayerWrapper(this.state.tracks[this.musicPosition].track_id);
+      // debugger;
+      this.player = new SoundCloudPlayerWrapper(this.tracks[this.musicPosition].track_id);
       this.setState({
         nowPlaying: {
-          trackName: this.state.tracks[this.musicPosition].track_title,
-          artistName: this.state.tracks[this.musicPosition].track_artist,
+          trackName: this.tracks[this.musicPosition].track_title,
+          artistName: this.tracks[this.musicPosition].track_artist,
         }
       });
-      fetch('http://api.soundcloud.com/tracks/' + this.state.tracks[this.musicPosition].track_id + '?client_id=' + this.clientId)
+      fetch('http://api.soundcloud.com/tracks/' + this.tracks[this.musicPosition].track_id + '?client_id=' + this.clientId)
         .then((response) => response.json())
         .then((json) => {
           this.setState({

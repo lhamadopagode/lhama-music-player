@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import SoundCloudPlayerWrapper, { SoundCloudPlayerWrapperEvents } from './components/soundCloudPlayerWrapper';
 import PlayButton from './components/playButton';
-import { soundCloudAPIKey } from '~/api.config.js';
+import { soundCloudAPIKey, playlistRestURL } from '~/api.config.js';
 
 class Jukebox extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class Jukebox extends React.Component {
       client_id: this.clientId
     });
 
-    fetch('https://cassandra-ced35.firebaseio.com/playlists.json').then((response) => {
+    fetch(playlistRestURL).then((response) => {
       return response.json();
     }).then((json) => {
       this.tracks = json[0].tracks;

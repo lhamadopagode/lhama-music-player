@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import SoundCloudPlayerWrapper, { SoundCloudPlayerWrapperEvents } from './components/soundCloudPlayerWrapper';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faPlay from '@fortawesome/fontawesome-free-solid/faPlay'; 
-import faPause from '@fortawesome/fontawesome-free-solid/faPause';
-import faCircleNotch from '@fortawesome/fontawesome-free-solid/faCircleNotch';
 import _ from 'lodash';
+import React from 'react';
+import SoundCloudPlayerWrapper, { SoundCloudPlayerWrapperEvents } from './components/soundCloudPlayerWrapper';
+import PlayButton from './components/playButton';
 
 class Jukebox extends React.Component {
   constructor(props) {
-    super(props)
-    
+    super(props);
+
     this.clientId = 'XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi';
 
+    this.tracks = [];
     this.state = {
-      tracks: [],
       trackPosition: 0,
+      tracksFetched: false,
       isPlaying: false,
       playingCover: 'http://placehold.it/500x500',
       nowPlaying: {
@@ -84,36 +82,45 @@ class Jukebox extends React.Component {
         .then((response) => response.json())
         .then((json) => {
           this.setState({
-            playingCover: json.artwork_url.replace('large', 't500x500')
+            playingCover: json.artwork_url.replace('large', 't500x500'),
           })
         });
       this.player.play();
     }
-    else{
+    else {
       this.player.play();
     }
   }
 
-  renderPlayButton(){
-    if(this.state.tracks.length){
-      if(this.state.isPlaying) {
+  renderPlayButton() {
+    if (this.state.tracks.length) {
+      if (this.state.isPlaying) {
         return <button className="jukebox__play-pause" onClick={this.pause.bind(this)}><FontAwesomeIcon icon={faPause} className={this.state.isPlaying ? '' : 'jukebox__play-pause-icon'} /></button>
       }
-      else {
-        return <button className="jukebox__play-pause" onClick={this.playSong.bind(this)}><FontAwesomeIcon icon={faPlay} className='jukebox__play-pause-icon' /></button>
-      }
+        return (<button
+          className="jukebox__play-pause"
+          onClick={this.playSong.bind(this)}
+        >
+          <FontAwesomeIcon
+              icon={faPlay}
+              className="jukebox__play-pause-icon"
+          />
+        </button>)
     }
-    else {
-      return <button disabled className="jukebox__play-pause"><FontAwesomeIcon icon={faCircleNotch} /></button>
-    }
+    return <button disabled className="jukebox__play-pause"><FontAwesomeIcon icon={faCircleNotch} /></button>
   }
-  
+
   render() {
     return (
       <div className="jukebox__wrapper">
         <div className="jukebox">
           <div className="jukebox__cover">
-            { this.renderPlayButton() } 
+             <PlayButton
+              tracks={this.tracks}
+              pause={this.pause}
+              isPlaying={this.state.isPlaying}
+              playSong={this.playSong}
+            />
             <img className="jukebox__cover-img" src={this.state.playingCover} alt="Album Cover"/>
           </div>
           <div className="jukebox__controls">

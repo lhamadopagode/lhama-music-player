@@ -68,7 +68,7 @@ class Jukebox extends React.Component {
         artistName: this.tracks[this.musicPosition].track_artist,
       }
     });
-    fetch('http://api.soundcloud.com/tracks/'+ this.tracks[this.musicPosition].track_id +'?client_id='+ this.clientId)
+    fetch(`http://api.soundcloud.com/tracks/'${this.tracks[this.musicPosition].track_id}'?client_id='${this.clientId}`)
       .then((response) => response.json())
       .then((json) => {
         this.setState({
@@ -89,7 +89,7 @@ class Jukebox extends React.Component {
           artistName: this.tracks[this.musicPosition].track_artist,
         }
       });
-      fetch('http://api.soundcloud.com/tracks/' + this.tracks[this.musicPosition].track_id + '?client_id=' + this.clientId)
+      fetch(`http://api.soundcloud.com/tracks/'${this.tracks[this.musicPosition].track_id}'?client_id='${this.clientId}`)
         .then((response) => response.json())
         .then((json) => {
           this.setState({

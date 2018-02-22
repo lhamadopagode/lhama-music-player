@@ -1,5 +1,12 @@
 .header-hero {
+  @extend .align-items-center;
+  @extend .d-flex;
+  background-image: url('../img/cover.jpg');
+  background-size: cover;
+  height: 100vh;
+  
   &__text-wrapper {
     @extend .col-md-3;
+    color: white;
   }
 }

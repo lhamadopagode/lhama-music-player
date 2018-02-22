@@ -35,6 +35,9 @@ class Jukebox extends React.Component {
       return response.json();
     }).then((json) => {
       this.tracks = json[0].tracks;
+      this.setState({
+        tracksFetched: true,
+      });
     }).catch( error => console.log(error));;
   }
 

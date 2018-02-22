@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
 import Jukebox from './jukebox/main';
 
 class Layout extends React.Component {
@@ -13,6 +14,7 @@ class Layout extends React.Component {
     return(
       <div>
         <Navbar />
+        <Hero />
         <Jukebox />
       </div>
     )

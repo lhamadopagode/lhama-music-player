@@ -5,12 +5,13 @@ import faPause from '@fortawesome/fontawesome-free-solid/faPause';
 import faCircleNotch from '@fortawesome/fontawesome-free-solid/faCircleNotch';
 
 export default function PlayButton(props) {
-  if (props.tracks.lenght) {
+  if (props.isFetched) {
+    
     if (props.isPlaying) {
       return (
         <button
           className="jukebox__play-pause"
-          onClick={this.pause.bind(this)}
+          onClick={props.pause.bind(this)}
         >
           <FontAwesomeIcon
             icon={faPause}
@@ -29,6 +30,7 @@ export default function PlayButton(props) {
         />
       </button>);
   }
+  // debugger;
   return (
     <button
       disabled

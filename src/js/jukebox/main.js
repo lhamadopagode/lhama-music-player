@@ -91,24 +91,6 @@ class Jukebox extends React.Component {
     }
   }
 
-  renderPlayButton() {
-    if (this.state.tracks.length) {
-      if (this.state.isPlaying) {
-        return <button className="jukebox__play-pause" onClick={this.pause.bind(this)}><FontAwesomeIcon icon={faPause} className={this.state.isPlaying ? '' : 'jukebox__play-pause-icon'} /></button>
-      }
-        return (<button
-          className="jukebox__play-pause"
-          onClick={this.playSong.bind(this)}
-        >
-          <FontAwesomeIcon
-              icon={faPlay}
-              className="jukebox__play-pause-icon"
-          />
-        </button>)
-    }
-    return <button disabled className="jukebox__play-pause"><FontAwesomeIcon icon={faCircleNotch} /></button>
-  }
-
   render() {
     return (
       <div className="jukebox__wrapper">
@@ -116,9 +98,10 @@ class Jukebox extends React.Component {
           <div className="jukebox__cover">
              <PlayButton
               tracks={this.tracks}
-              pause={this.pause}
+              pause={this.pause.bind(this)}
               isPlaying={this.state.isPlaying}
-              playSong={this.playSong}
+              playSong={this.playSong.bind(this)}
+              isFetched={this.state.tracksFetched}
             />
             <img className="jukebox__cover-img" src={this.state.playingCover} alt="Album Cover"/>
           </div>

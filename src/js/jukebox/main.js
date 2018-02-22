@@ -2,12 +2,13 @@ import _ from 'lodash';
 import React from 'react';
 import SoundCloudPlayerWrapper, { SoundCloudPlayerWrapperEvents } from './components/soundCloudPlayerWrapper';
 import PlayButton from './components/playButton';
+import { soundCloudAPIKey } from '~/api.config.js';
 
 class Jukebox extends React.Component {
   constructor(props) {
     super(props);
 
-    this.clientId = 'XKuHKW11tHj45yuqhpxy2eC04Z0I9rIi';
+    this.clientId = soundCloudAPIKey;
 
     this.tracks = [];
     this.state = {

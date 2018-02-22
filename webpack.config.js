@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/js/main.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve('dist'),
+    path: path.resolve('docs'),
   },
   module: {
     rules: [

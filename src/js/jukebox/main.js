@@ -22,8 +22,18 @@ class Jukebox extends React.Component {
       },
     }
 
-    window.addEventListener(SoundCloudPlayerWrapperEvents.PLAYING, _=> this.setState({ isPlaying: true}));
-    window.addEventListener(SoundCloudPlayerWrapperEvents.FINISHED, _=> { this.playNextSong(); this.setState({ isPlaying: false }) });
+    window.addEventListener(SoundCloudPlayerWrapperEvents.PLAYING, this.changeState);
+    window.addEventListener(SoundCloudPlayerWrapperEvents.FINISHED, this.autoSkip);
+  }
+
+
+  changeState(){
+    this.setState({ isPlaying: true });
+  }
+
+  autoSkip(){
+    this.playNextSong();
+    this.setState({ isPlaying: false }) 
   }
 
   componentWillMount() {

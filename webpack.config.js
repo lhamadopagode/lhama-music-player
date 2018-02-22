@@ -44,7 +44,7 @@ module.exports = {
   resolve: {
     alias: {
       bootstrap$: path.resolve(__dirname, './node_modules/bootstrap/scss/bootstrap.scss'),
-      
+      ['~']: path.resolve(__dirname),
     }
   }
 }

@@ -59,7 +59,6 @@ class Jukebox extends React.Component {
   }
 
   playNextSong() {
-    // debugger;
     this.musicPosition++;
     this.player.kill();
     this.player = new SoundCloudPlayerWrapper(this.tracks[this.musicPosition].track_id);

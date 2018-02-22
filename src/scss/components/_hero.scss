@@ -1,0 +1,5 @@
+.header-hero {
+  &__text-wrapper {
+    @extend .col-md-3;
+  }
+}

@@ -44,7 +44,7 @@ class Jukebox extends React.Component {
     fetch(playlistRestURL).then((response) => {
       return response.json();
     }).then((json) => {
-      this.tracks = json[0].tracks;
+      this.tracks = json[1].tracks;
       this.setState({
         tracksFetched: true,
       });

@@ -36,6 +36,6 @@ export default function PlayButton(props) {
       disabled
       className="jukebox__play-pause"
     >
-      <FontAwesomeIcon icon={faCircleNotch} />
+      <FontAwesomeIcon spin icon={faCircleNotch} />
   </button>);
 }

@@ -1,12 +1,29 @@
 .header-hero {
-  @extend .align-items-center;
+  @extend .align-items-end;
   @extend .d-flex;
   background-image: url('../img/cover.jpg');
   background-size: cover;
   height: 100vh;
   
   &__text-wrapper {
+    @extend .row;
+  }
+  
+  &__title {
     @extend .col-md-3;
     color: white;
+    text-shadow: 1px 1px 12px rgba(0,0,0,.3);
+  }
+
+  &__cards {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    @extend .row;
+
+    &-title {
+      @extend .col-md-12;
+      color: white;
+      text-shadow: 1px 1px 12px rgba(0,0,0,.3);
+    }
   }
 }

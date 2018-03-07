@@ -4,6 +4,8 @@ export const SoundCloudPlayerWrapperEvents = {
   PLAYING: 'playing',
   PAUSED: 'paused',
   FINISHED: 'finished',
+  BUFFERED: 'buffered',
+  SKIPED: 'skiped',
 };
 
 class SoundCloudPlayerWrapper {
@@ -19,10 +21,9 @@ class SoundCloudPlayerWrapper {
     this.event[SoundCloudPlayerWrapperEvents.FINISHED] = new CustomEvent('finished',{
       musicID: this.id,
     });
-    this.event.buffered = new CustomEvent('buffered',{
+    this.event[SoundCloudPlayerWrapperEvents.BUFFERED] = new CustomEvent('buffered',{
       musicID: this.id,
     });
-
   }
 
   play(){
@@ -52,15 +53,13 @@ class SoundCloudPlayerWrapper {
     if(this.player.getState() === 'paused'){
       return true
     }
-    else {
-      return false
-    }
+    return false
   }
 
-  kill(){
+  skip(){
     this.player.kill();
-    window.dispatchEvent(this.event[SoundCloudPlayerWrapperEvents.FINISHED]);
   }
+
 }
 
 
